@@ -1,13 +1,9 @@
 ---
 const { website } = Astro.props;
 
-const links = [
-    '1',
-    '2',
-]
 ---
 
-<article title={website.title}>
+<article title={website.title} class={website.side}>
     <a href={website.link} target="_blank"><img src={website.img}></img></a>
     <!-- <h3>{website.title}</h3> -->
 </article>
@@ -15,6 +11,7 @@ const links = [
 <style>
     article{
         /* border: 1px solid white; */
+        color: var(--color-accent);
         border-radius: 20px;
         height: 10rem;
         width: 10rem;
@@ -26,7 +23,7 @@ const links = [
         transform: scale(110%);
     }
 
-    article::after{
+    .left::after{
         content: attr(title);
         padding: 5px 0px;
         font-size: 20px;
@@ -35,7 +32,7 @@ const links = [
         transition: padding 0.5s;
     }
 
-    article:hover:after {
+    .left:hover:after {
         opacity: 100%;
         padding: 5px 30px;
         font-size: 48px;
@@ -46,7 +43,28 @@ const links = [
         right: 100%;
     }
 
+    .right::after{
+        content: attr(title);
+        padding: 5px 0px;
+        font-size: 20px;
+        vertical-align: center;
+        font-weight: 400;
+        transition: padding 0.5s;
+    }
+
+    .right:hover:after {
+        opacity: 100%;
+        padding: 5px 30px;
+        font-size: 48px;
+        font-weight: 700;
+        /* border: solid 1px #ddd; */
+        position: absolute;
+        top: 30%;
+        left: 100%;
+    }
+
     img{
+        border-radius: 30px;
         width: fit-content;
     }
 </style>
