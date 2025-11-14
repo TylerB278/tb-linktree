@@ -7,7 +7,7 @@ const links = [
 ]
 ---
 
-<article>
+<article title={website.title}>
     <a href={website.link} target="_blank"><img src={website.img}></img></a>
     <!-- <h3>{website.title}</h3> -->
 </article>
@@ -26,7 +26,27 @@ const links = [
         transform: scale(110%);
     }
 
-    img {
+    article::after{
+        content: attr(title);
+        padding: 5px 0px;
+        font-size: 20px;
+        vertical-align: center;
+        font-weight: 400;
+        transition: padding 0.5s;
+    }
+
+    article:hover:after {
+        opacity: 100%;
+        padding: 5px 30px;
+        font-size: 48px;
+        font-weight: 700;
+        /* border: solid 1px #ddd; */
+        position: absolute;
+        top: 30%;
+        right: 100%;
+    }
+
+    img{
         width: fit-content;
     }
 </style>
