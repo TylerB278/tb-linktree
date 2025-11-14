@@ -5,13 +5,79 @@ import Container from "@components/Container.astro";
 import AstroLogo from "@assets/images/astro-logo-light-gradient.png";
 import { Content as SampleMarkdown } from "@content/sample-markdown.md";
 import { Image } from "astro:assets";
+import WebLink from "@components/WebLink.astro";
+
+const websites = [
+  {
+    title: "Twitter",
+    link: "https://www.x.com/",
+    img: "/Instagram.webp",
+    i: "0",
+  },
+  {
+    title: "Instagram",
+    link: "https://www.instagram.com/",
+    img: "/Instagram.webp",
+    i: "0",
+  },
+  {
+    title: "Portfolio",
+    link: "https://www.facebook.com/",
+    img: "/Instagram.webp",
+    i: "0",
+  },
+    {
+    title: "LinkedIn",
+    link: "https://www.facebook.com/",
+    img: "/Instagram.webp",
+    i: "0",
+  },
+];
 ---
 
 <Layout title="Astro Starter">
   <Container>
-    <Image src={AstroLogo} alt="" />
-    <h1>a simple Astro Starter Kit</h1>
-    <SampleComponent text="This is a sample component!" />
-    <SampleMarkdown />
+    <div class="links">
+    {websites.map(function (web){
+      return <WebLink website={web} />
+    })}
+    </div>
+    <div class="selfInfo">
+      <h2>Tyler Boggi</h2>
+      <h3>Graphic Designer</h3>
+    </div>
   </Container>
 </Layout>
+
+<style>
+
+.links{
+  width: 500px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  gap: 40px;
+}
+
+.selfInfo{
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+h2{
+  font-size: 72px;
+  font-weight: 700;
+  text-align: center;
+}
+
+h3{
+  font-size: 48px;
+  font-weight: 400;
+  margin-top: -15px;
+  text-align: center;
+}
+</style>
