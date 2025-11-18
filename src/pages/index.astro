@@ -50,25 +50,11 @@ const websites = [
   </Container>
 </Layout>
 
-<!-- <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <script is:inline style="z-index:-1000;">
-    function setup() {
-      createCanvas(displayWidth, displayHeight);
-    }
-    function draw() {
-      background(0);
-      fill(255);
-      ellipse(mouseX, mouseY, 80, 80);
-    }
-</script> -->
-
 <script>
   import p5 from "p5";
   const container = document.querySelector(".p5-contain");
 
   const sketch = (p:p5) => {
-    let x = 100;
-    let y = 100;
 
     p.setup = function(){
       p.createCanvas(p.windowWidth,p.windowHeight);
@@ -83,7 +69,7 @@ const websites = [
     p.windowResized = function(){
       p.resizeCanvas(p.windowWidth, p.windowHeight);
     };
-  }
+};
 
   new p5(sketch, container);
 </script>
