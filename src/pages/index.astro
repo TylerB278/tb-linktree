@@ -17,7 +17,7 @@ const websites = [
   {
     title: "Instagram",
     link: "https://www.instagram.com/t.b.d.esigned/",
-    img: "/Instagram.webp",
+    img: "/instagram-logo-colored.jpg",
     side: "right",
   },
   {
@@ -37,6 +37,7 @@ const websites = [
 
 <Layout title="Astro Starter">
   <Container>
+    <div class="p5-contain"></div>
     <div class="links">
     {websites.map(function (web){
       return <WebLink website={web} />
@@ -49,7 +50,50 @@ const websites = [
   </Container>
 </Layout>
 
+<!-- <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script is:inline style="z-index:-1000;">
+    function setup() {
+      createCanvas(displayWidth, displayHeight);
+    }
+    function draw() {
+      background(0);
+      fill(255);
+      ellipse(mouseX, mouseY, 80, 80);
+    }
+</script> -->
+
+<script>
+  import p5 from "p5";
+  const container = document.querySelector(".p5-contain");
+
+  const sketch = (p:p5) => {
+    let x = 100;
+    let y = 100;
+
+    p.setup = function(){
+      p.createCanvas(p.windowWidth,p.windowHeight);
+    };
+
+    p.draw = function(){
+      p.clear();
+      p.fill(255, 230, 0);
+      p.ellipse(p.mouseX, p.mouseY, 50, 50);
+    };
+
+    p.windowResized = function(){
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
+    };
+  }
+
+  new p5(sketch, container);
+</script>
+
 <style>
+
+.p5-contain{
+  position: absolute;
+  z-index: -1000000;
+}
 
 .links{
   width: 500px;
@@ -62,16 +106,30 @@ const websites = [
 
 .selfInfo{
   width: 100%;
-  height: 200px;
+  height: 300px;
+  padding: 50px;
   position: absolute;
   bottom: 0px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Size Animation */
+@keyframes ScaleUp {
+  0% {scale: 100%;}
+  50% {scale: 105%;}
+  100% {scale: 100%;}
+}
+
 h2{
-  font-size: 72px;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 80px;
   font-weight: 700;
   text-align: center;
+  scale: 100%;
+  animation: ScaleUp 3s ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 h3{
