@@ -33,6 +33,15 @@ const websites = [
     side: "right",
   },
 ];
+
+  const imageStore = [
+  { img: "/buildings.png", }, { img: "/building2.png", }, { img: "/tree1.png", }, { img: "/trees2.png", },
+  ];
+
+  const bgImages = [
+  { img: "/buildings.png", }, { img: "/building2.png", }, { img: "/tree1.png", }, { img: "/trees2.png", }, { img: "/buildings.png", }, { img: "/building2.png", }, { img: "/tree1.png", }, { img: "/trees2.png", },
+  ];
+
 ---
 
 <Layout title="Astro Starter">
@@ -42,6 +51,16 @@ const websites = [
     {websites.map(function (web){
       return <WebLink website={web} />
     })}
+    </div>
+    <div>
+      <img id="bgi-1" class="bg-anim" src={bgImages[0].img}></img>
+      <img id="bgi-2" class="bg-anim" src={bgImages[1].img}></img>
+      <img id="bgi-3" class="bg-anim" src={bgImages[2].img}></img>
+      <img id="bgi-4" class="bg-anim" src={bgImages[3].img}></img>
+      <img id="bgi-5" class="bg-anim" src={bgImages[4].img}></img>
+      <img id="bgi-6" class="bg-anim" src={bgImages[5].img}></img>
+      <img id="bgi-7" class="bg-anim" src={bgImages[6].img}></img>
+      <img id="bgi-8" class="bg-anim" src={bgImages[7].img}></img>
     </div>
     <div class="selfInfo">
       <h2>Tyler Boggi</h2>
@@ -64,6 +83,7 @@ const websites = [
       p.clear();
       p.fill(255, 230, 0);
       p.ellipse(p.mouseX, p.mouseY, 50, 50);
+
     };
 
     p.windowResized = function(){
@@ -72,6 +92,68 @@ const websites = [
 };
 
   new p5(sketch, container);
+
+  //Background Image Storage
+  const imageStore = [
+  { img: "/buildings.png", }, { img: "/building2.png", }, { img: "/tree1.png", }, { img: "/trees2.png", },
+  ];
+
+  const bgImages = [
+  { img: "/buildings.png", }, { img: "/building2.png", }, { img: "/tree1.png", }, { img: "/trees2.png", }, { img: "/buildings.png", }, { img: "/building2.png", }, { img: "/tree1.png", }, { img: "/trees2.png", },
+  ];
+  let lastImage= "";
+  let newImage = "";
+  //Animation End Events
+  const bgi1 = document.querySelector("#bgi-1");
+  const bgi2 = document.querySelector("#bgi-2");
+  const bgi3 = document.querySelector("#bgi-3");
+  const bgi4 = document.querySelector("#bgi-4");
+  const bgi5 = document.querySelector("#bgi-5");
+  const bgi6 = document.querySelector("#bgi-6");
+  const bgi7 = document.querySelector("#bgi-7");
+  const bgi8 = document.querySelector("#bgi-8");
+
+  function imageShift(number: number) {
+    const targetElement=document.querySelector(`#bgi-${number+1}`);
+    
+    while(newImage == lastImage){
+    newImage = imageStore[Math.floor(Math.random()*imageStore.length)].img;
+    // console.log(newImage)
+    }
+
+    targetElement.src=newImage;
+    lastImage=newImage;
+  // bgImages[number].img = imageStore[0].img;
+  // console.log(bgImages[number].img);
+  }
+
+  //Event Listeners
+  bgi1.addEventListener("animationiteration", ()=>{
+    imageShift(0);
+  });
+  bgi2.addEventListener("animationiteration", ()=>{
+    imageShift(1);
+  });
+  bgi3.addEventListener("animationiteration", ()=>{
+    imageShift(2);
+  });
+  bgi4.addEventListener("animationiteration", ()=>{
+    imageShift(3);
+  });
+  bgi5.addEventListener("animationiteration", ()=>{
+    imageShift(4);
+  });
+  bgi6.addEventListener("animationiteration", ()=>{
+    imageShift(5);
+  });
+  bgi7.addEventListener("animationiteration", ()=>{
+    imageShift(6);
+  });
+  bgi8.addEventListener("animationiteration", ()=>{
+    imageShift(7);
+  });
+
+
 </script>
 
 <style>
@@ -96,14 +178,58 @@ const websites = [
   padding: 50px;
   position: absolute;
   bottom: 0px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--color-accent);
+  color: black;
 }
+
+.bg-anim{
+  position: absolute;
+  bottom: 300px;
+  width: 14%;
+  max-width: 250px;
+  right: 100%;
+  animation: LeftToRight 5s linear reverse infinite;
+
+}
+
+/* Animation Offsets for Each BG Tile */
+#bgi-1{ animation-delay: 0s; }
+#bgi-2{ animation-delay: 0.6s; }
+#bgi-3{ animation-delay: 1.2s; }
+#bgi-4{ animation-delay: 1.8s; }
+#bgi-5{ animation-delay: 2.4s; }
+#bgi-6{ animation-delay: 3s; }
+#bgi-7{ animation-delay: 3.7s; }
+#bgi-8{ animation-delay: 4.4s; }
 
 /* Size Animation */
 @keyframes ScaleUp {
   0% {scale: 100%;}
   50% {scale: 105%;}
   100% {scale: 100%;}
+}
+
+@keyframes LeftToRight {
+  0% {left: -20%;}
+  100% {left: 100%;}
+}
+
+@keyframes Sparkle {
+  0% {scale: 0%; rotate: 0deg;}
+  100% {scale: 100%; rotate: 380deg;}
+}
+
+.anim{
+  position: absolute;
+  top: 20%;
+  width: 100px;
+  height: fit-content;
+  border: 1px solid red;
+  animation: Sparkle 0.5s linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-delay: 5s;
+  z-index: -1;
 }
 
 h2{
@@ -123,5 +249,11 @@ h3{
   font-weight: 400;
   margin-top: -15px;
   text-align: center;
+}
+
+@media (prefers-reduced-motion){
+  .bg-anim{
+    display: none;
+  }
 }
 </style>

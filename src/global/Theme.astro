@@ -10,7 +10,7 @@ import "@fontsource/karla";
 
   :root {
     --color-background: rgb(0, 0, 0);
-    --color-text: rgb(240, 240, 240);
+    --color-text: black;
     --color-accent: rgb(255, 230, 0);
     --color-focus-ring: rgb(255, 0, 255);
 
@@ -19,6 +19,7 @@ import "@fontsource/karla";
 
     font-size: 18px;
     cursor: none;
+    overflow: hidden;
     
     /* These sizes are used by the Container component to set up the page container */
     --size-page-width: 100%;
@@ -39,7 +40,7 @@ import "@fontsource/karla";
   h4,
   h5,
   h6 {
-    color: var(--color-accent);
+    color: var(--color-text);
   }
 
   /* default focus ring styles */
