@@ -69,4 +69,32 @@ const { website } = Astro.props;
         border-radius: 40px;
         width: fit-content;
     }
+
+    @media(max-width: 1120px){
+        article{
+            width: 8rem;
+            height: 8rem;
+            border-radius: 30px;
+        }
+        img{
+            border-radius: 20px;
+        }
+        .left:hover:after{
+            font-size: 2rem;
+            padding: 5px 20px;
+        }
+        .right:hover:after{
+            font-size: 2rem;
+            padding: 5px 20px;
+        }
+    }
+
+    @media(max-width: 800px){
+        article{
+            width: 10rem;
+            height: 10rem;
+        }
+        .right:hover:after{ content: none; }
+        .left:hover:after{ content: none; }
+    }
 </style>

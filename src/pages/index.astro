@@ -52,7 +52,7 @@ const websites = [
       return <WebLink website={web} />
     })}
     </div>
-    <div>
+    <div class="master-bg-anim">
       <img id="bgi-1" class="bg-anim" src={bgImages[0].img}></img>
       <img id="bgi-2" class="bg-anim" src={bgImages[1].img}></img>
       <img id="bgi-3" class="bg-anim" src={bgImages[2].img}></img>
@@ -187,9 +187,9 @@ const websites = [
   bottom: 300px;
   width: 14%;
   max-width: 250px;
+  min-width: 60px;
   right: 100%;
   animation: LeftToRight 5s linear reverse infinite;
-
 }
 
 /* Animation Offsets for Each BG Tile */
@@ -254,6 +254,49 @@ h3{
 @media (prefers-reduced-motion){
   .bg-anim{
     display: none;
+  }
+}
+
+@media(max-width: 1120px){
+  .links{
+    width: 330px;
+    gap: 0px;
+    margin-top: 200px;
+  }
+}
+
+@media(max-width: 800px){
+  .links{
+    width: 300px;
+    gap: 40px;
+    margin-top: 30px;
+  }
+  .selfInfo{
+    height: 200px;
+    padding: 30px;
+  }
+  h2{
+    font-size: 60px;
+    margin-bottom: 10px;
+  }
+
+  h3{
+    font-size: 32px;
+  }
+  .bg-anim{
+    bottom: 200px;
+  }
+  .master-bg-anim{
+    overflow-x: hidden;
+  }
+}
+
+@media(max-width: 400px){
+  h2{
+    font-size: 48px;
+  }
+  h3{
+    font-size: 28px;
   }
 }
 </style>
